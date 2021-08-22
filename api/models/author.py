@@ -1,12 +1,13 @@
 from api import db
+from datetime import datetime
 
 
 class AuthorModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(32), unique=True)
     surname = db.Column(db.String(32), unique=True)
-    middle_name = db.Column(db.String(32), default="Unknown")
     quotes = db.relationship('QuoteModel', backref='author', lazy='joined')
+    register_date = db.Column(db.DateTime(timezone=True), default=datetime.now)
 
     def __init__(self, name, surname):
         self.name = name
