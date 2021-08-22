@@ -5,6 +5,7 @@ class AuthorModel(db.Model):
    id = db.Column(db.Integer, primary_key=True)
    name = db.Column(db.String(32), unique=True)
    surname = db.Column(db.String(32), unique=True)
+   middlename = db.Column(db.String(32), default="Unknown")
    quotes = db.relationship('QuoteModel', backref='author', lazy='joined')
 
    def __init__(self, name, surname):
