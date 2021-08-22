@@ -2,17 +2,17 @@ from api import db
 
 
 class AuthorModel(db.Model):
-   id = db.Column(db.Integer, primary_key=True)
-   name = db.Column(db.String(32), unique=True)
-   surname = db.Column(db.String(32), unique=True)
-   middlename = db.Column(db.String(32), default="Unknown")
-   quotes = db.relationship('QuoteModel', backref='author', lazy='joined')
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(32), unique=True)
+    surname = db.Column(db.String(32), unique=True)
+    middle_name = db.Column(db.String(32), default="Unknown")
+    quotes = db.relationship('QuoteModel', backref='author', lazy='joined')
 
-   def __init__(self, name, surname):
-       self.name = name
-       self.surname = surname
+    def __init__(self, name, surname):
+        self.name = name
+        self.surname = surname
 
-   def to_dict(self):
+    def to_dict(self):
         # value = "name"
         # getattr(self, value) --> self.name
         d = {}
