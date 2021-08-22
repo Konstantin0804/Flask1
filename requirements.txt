@@ -30,3 +30,5 @@ SQLAlchemy==1.4.22
 traitlets==5.0.5
 wcwidth==0.2.5
 Werkzeug==2.0.1
+gunicorn
+psycopg2-binary
