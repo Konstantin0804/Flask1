@@ -2,7 +2,8 @@ from flask_restful import Resource, reqparse
 from api.models.author import AuthorModel
 from api import db
 
-class Author(Resource):
+
+class AuthorResource(Resource):
     def get(self, id):
         author = AuthorModel.query.get(id)
         if author:
@@ -44,7 +45,8 @@ class Author(Resource):
             return author.to_dict(), 200
         return "Not found", 404
 
-class AuthorList(Resource):
+
+class AuthorListResource(Resource):
     def get(self):
         authors = AuthorModel.query.all()
         authors = [author.to_dict() for author in authors]
