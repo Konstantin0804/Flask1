@@ -1,5 +1,6 @@
 from flask_restful import Resource, reqparse
 from api.models.author import AuthorModel
+from api.models.quote import QuoteModel
 from api import db
 
 
@@ -40,6 +41,10 @@ class AuthorResource(Resource):
     def delete(self, id):
         author = AuthorModel.query.get(id)
         if author:
+            self.author_id = id
+            quote = QuoteModel.query.get(self.author_id)
+            db.session.delete(quote)
+            db.session.commit()
             db.session.delete(author)
             db.session.commit()
             return author.to_dict(), 200

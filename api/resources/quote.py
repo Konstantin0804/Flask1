@@ -47,6 +47,7 @@ class QuoteResource(Resource):
             db.session.delete(quote)
             db.session.commit()
             return quote.to_dict, 200
+        return "Not found", 404
 
 
 class QuoteListResource(Resource):
