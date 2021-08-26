@@ -8,7 +8,7 @@ api.add_resource(AuthorResource, "/author/<int:id>",
 
 api.add_resource(QuoteListResource, "/quotes")  # Все цитаты
 api.add_resource(QuoteListSortedIdResource, "/quotes/idsorted")  # Все цитаты c сортировкой по id
-api.add_resource(QuoteListSortedAuthorNameResource, "/quotes/authornamesorted")  # Все цитаты c сортировкой по id
+api.add_resource(QuoteListSortedAuthorNameResource, "/quotes/authornamesorted")  # Все цитаты c сортировкой по имени автора
 api.add_resource(QuoteResource, "/quotes", "/author/<int:author_id>/quotes")  # Цитаты с методом post и по id автора
 api.add_resource(QuotesByAuthorsResource,
                  "/author/<int:author_id>/quotes/<int:quote_id>")  # работа с цитататами по id автора и id цитаты? Метод Put не работает корректно, пока не смог разобраться по какой причине

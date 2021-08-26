@@ -6,7 +6,7 @@ class QuoteModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     author_id = db.Column(db.Integer, db.ForeignKey(AuthorModel.id))
     quote = db.Column(db.String(255), unique=False)
-    rate = db.Column(db.Integer)
+    rate = db.Column(db.Integer, default=1)
 
     def __init__(self, author, quote):
         self.author = author
