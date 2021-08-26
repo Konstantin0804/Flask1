@@ -7,7 +7,7 @@ class AuthorModel(db.Model):
     name = db.Column(db.String(32), unique=True)
     surname = db.Column(db.String(32), unique=True)
     quotes = db.relationship('QuoteModel', backref='author', lazy='joined')
-    register_date = db.Column(db.DateTime(timezone=True), default=datetime.now)
+    register_date = db.Column(db.DateTime(timezone=True), default=datetime.utcnow)
 
     def __init__(self, name, surname):
         self.name = name
