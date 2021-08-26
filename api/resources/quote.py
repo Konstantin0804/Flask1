@@ -2,7 +2,7 @@ from flask_restful import Resource, reqparse
 from api.models.quote import QuoteModel
 from api.models.author import AuthorModel
 from api import db
-
+from operator import itemgetter, attrgetter, methodcaller
 
 class QuoteResource(Resource):
     def get(self, author_id):
@@ -55,6 +55,20 @@ class QuoteListResource(Resource):
         quotes = [quote.to_dict() for quote in quotes]
         return quotes, 200
 
+
+class QuoteListSortedIdResource(Resource):
+    def get(self):
+        quotes = QuoteModel.query.all()
+        quotes = [quote.to_dict() for quote in quotes]
+        quotes = sorted(quotes, key=itemgetter('id'))
+        return quotes, 200
+
+class QuoteListSortedAuthorNameResource(Resource):
+    def get(self):
+        quotes = AuthorModel.query.all()
+        quotes = [quote.to_dict() for quote in quotes]
+        quotes = sorted(quotes, key=itemgetter('name'))
+        return quotes, 200
 
 class QuotesByAuthorsResource(Resource):
     def get(self, author_id, quote_id):
